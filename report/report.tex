@@ -41,13 +41,13 @@
 \PaperTitle{Natural language processing course Latex Template} 
 
 % Authors (student competitors) and their info
-\Authors{John Doe, Jane Doe, and Mike Smith}
+\Authors{Jakob Mrak, Enei Sluga, and Lan Vukušič}
 
 % Advisors
 \affiliation{\textit{Advisors: Slavko Žitnik}}
 
 % Keywords
-\Keywords{Keyword1, Keyword2, Keyword3 ...}
+\Keywords{LLM, discourse}
 \newcommand{\keywordname}{Keywords}
 
 
@@ -56,9 +56,9 @@
 %----------------------------------------------------------------------------------------
 
 \Abstract{
-The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here. The abstract goes here.
-}
+This project aims to develop a highly reliable language model for qualitative discourse analysis, a critical method in social science research for understanding human interaction. The task involves categorizing postings in online discussions, such as those about the story "The Lady, or the Tiger?" using a coded dataset with high inter-rater reliability and a comprehensive codebook. The project addresses the challenge of achieving high inter-rater reliability, which is crucial for ensuring consistency and accuracy in qualitative research. This is particularly important in qualitative discourse analysis, where the nuanced understanding of human interaction requires a deep comprehension of the discussion context, each participant's perspective, and the intertextual relationships between sentences. The project leverages large language models (LLMs) to automate this labour-intensive task, aiming to generalize the model to other online discussions. This approach not only enhances the efficiency of qualitative discourse analysis but also contributes to the broader field of social science research by providing a scalable solution for analyzing complex human interactions in digital spaces.
 
+}
 %----------------------------------------------------------------------------------------
 
 \begin{document}
@@ -77,9 +77,24 @@ The abstract goes here. The abstract goes here. The abstract goes here. The abst
 %----------------------------------------------------------------------------------------
 
 \section*{Introduction}
-	These latex files are intended to serve as a the template for the NLP course at FRI.  The template is adapted from the FRI Data Science Project Competition. template  If you find mistakes in the template or have problems using it, please consult Jure Demšar (\href{mailto:jure.demsar@fri.uni-lj.si}{jure.demsar@fri.uni-lj.si}).
+% Report containing Introduction, existing solutions/related work and initial ideas
 	
-	In the Introduction section you should write about the relevance of your work (what is the purpose of the project, what will we solve) and about related work (what solutions for the problem already exist). Where appropriate, reference scientific work conducted by other researchers. For example, the work done by Demšar et al. \cite{Demsar2016BalancedMixture} is very important for our project. The abbreviation et al. is for et alia, which in latin means and others, we use this abbreviation when there are more than two authors of the work we are citing. If there are two authors (or if there is a single author) we just write down their surnames. For example, the work done by Demšar and Lebar Bajec \cite{Demsar2017LinguisticEvolution} is also important for successful completion of our project.
+In this report, we will delve into the significance and objectives of our project, which aims to leverage large language models (LLMs) for qualitative discourse analysis, a critical method in social science research. This project addresses the challenge of achieving high inter-rater reliability in the categorization of postings in online discussions, such as those about the story "The Lady, or the Tiger?" using a coded dataset with high inter-rater
+reliability and a comprehensive codebook \footnote{Codebook is a structured document or dictionary that contains mappings between symbols or codes and their corresponding linguistic features or meanings}. The relevance of our work lies in its potential to enhance the efficiency of qualitative discourse analysis, a traditionally labour-intensive process requiring significant time and resources. By addressing the limitations and variability of existing LLMs, we aim to contribute to the broader field of social science research by providing a robust solution for qualitative discourse analysis. This is crucial for advancing our understanding of human interaction in digital spaces and enhancing qualitative research's efficiency and accuracy.
+
+\subsection{ChatGPT in education}
+The work ChatGPT in education: A discourse analysis of worries and
+concerns on social media~\cite{chatgpt} employs a comprehensive research framework for analyzing discourse surrounding ChatGPT in the realm of education on Twitter. Their study begins with data collection, focusing on tweets related to ChatGPT and education. They then utilize sentiment analysis, leveraging a sentiment model based on the RoBERTa architecture, to classify the sentiment of collected tweets. This sentiment analysis enables them to discern the attitudes and opinions expressed towards ChatGPT within educational contexts. Furthermore, they employ BERT-based topic modelling techniques to uncover semantic themes within the collected tweets. This approach involves utilizing BERT embedding to extract semantically relevant sentence embeddings, followed by dimensionality reduction using Uniform Manifold Approximation and Projection (UMAP) to construct coherent topic clusters. Finally, they utilize K-Means clustering and class-based Term Frequency-Inverse Document Frequency (c-TF-IDF) to represent and interpret these topics, facilitating a deeper understanding of the discourse landscape surrounding ChatGPT in educational settings.
+
+While this work focused on sentiment analysis and topic modelling within the context of ChatGPT in education, our project aims to develop a highly reliable language model for qualitative discourse analysis across diverse online discussion topics. By leveraging large language models (LLMs) and a coded dataset with high inter-rater reliability, we seek to automate the process of categorizing postings in online discussions, thereby contributing to a scalable solution for analyzing complex human interactions in digital spaces. Thus, while \emph{ChatGPT in education}~\cite{chatgpt} provides valuable insights into the discourse surrounding ChatGPT in education, our work extends beyond sentiment analysis and topic modelling to address the broader challenge of qualitative discourse analysis in social science research.
+
+\subsection{TopicGPT}
+In the article~\cite{pham2023topicgpt} they introduce TopicGPT, a novel framework that leverages large language models (LLMs) to enhance the process of topic modelling in text corpora. Traditional topic models, such as Latent Dirichlet Allocation (LDA), often represent topics as bags of words, which can be difficult to interpret and offer limited semantic control.
+TopicGPT addresses these limitations by using LLMs to uncover latent topics within a text collection, producing topics that align better with human categorizations.
+Its strengths lie in generating topics based on seen textual examples. This allows this approach to refine the set of topics to a more coarse or fine set, depending on the analyzed conversation. 
+Additionally, TopicGPT is adaptable, allowing users to specify constraints and modify topics without retraining the model.
+
+This work is relevant to our project as it demonstrates the potential of LLMs in improving the efficiency and interpretability of text analysis tasks, which is a key goal of our project to develop a highly reliable language model for qualitative discourse analysis. The adaptability and semantic understanding of TopicGPT could provide valuable insights for developing a language model that not only categorizes text effectively but also offers a level of semantic understanding and interpretability that aligns with the goals of qualitative discourse analysis.
 
 
 %------------------------------------------------
@@ -88,130 +103,16 @@ The abstract goes here. The abstract goes here. The abstract goes here. The abst
 
 Use the Methods section to describe what you did an how you did it -- in what way did you prepare the data, what algorithms did you use, how did you test various solutions ... Provide all the required details for a reproduction of your work.
 
-Below are \LaTeX examples of some common elements that you will probably need when writing your report (e.g. figures, equations, lists, code examples ...).
+\section*{Data}
 
-
-\subsection*{Equations}
-
-You can write equations inline, e.g. $\cos\pi=-1$, $E = m \cdot c^2$ and $\alpha$, or you can include them as separate objects. The Bayes’s rule is stated mathematically as:
-
-\begin{equation}
-	P(A|B) = \frac{P(B|A)P(A)}{P(B)},
-	\label{eq:bayes}
-\end{equation}
-
-where $A$ and $B$ are some events. You can also reference it -- the equation \ref{eq:bayes} describes the Bayes's rule.
-
-\subsection*{Lists}
-
-We can insert numbered and bullet lists:
-
-% the [noitemsep] option makes the list more compact
-\begin{enumerate}[noitemsep] 
-	\item First item in the list.
-	\item Second item in the list.
-	\item Third item in the list.
-\end{enumerate}
-
-\begin{itemize}[noitemsep] 
-	\item First item in the list.
-	\item Second item in the list.
-	\item Third item in the list.
-\end{itemize}
-
-We can use the description environment to define or describe key terms and phrases.
-
-\begin{description}
-	\item[Word] What is a word?.
-	\item[Concept] What is a concept?
-	\item[Idea] What is an idea?
-\end{description}
-
-
-\subsection*{Random text}
-
-This text is inserted only to make this template look more like a proper report. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit dictum facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam convallis tellus velit, quis ornare ipsum aliquam id. Maecenas tempus mauris sit amet libero elementum eleifend. Nulla nunc orci, consectetur non consequat ac, consequat non nisl. Aenean vitae dui nec ex fringilla malesuada. Proin elit libero, faucibus eget neque quis, condimentum laoreet urna. Etiam at nunc quis felis pulvinar dignissim. Phasellus turpis turpis, vestibulum eget imperdiet in, molestie eget neque. Curabitur quis ante sed nunc varius dictum non quis nisl. Donec nec lobortis velit. Ut cursus, libero efficitur dictum imperdiet, odio mi fermentum dui, id vulputate metus velit sit amet risus. Nulla vel volutpat elit. Mauris ex erat, pulvinar ac accumsan sit amet, ultrices sit amet turpis.
-
-Phasellus in ligula nunc. Vivamus sem lorem, malesuada sed pretium quis, varius convallis lectus. Quisque in risus nec lectus lobortis gravida non a sem. Quisque et vestibulum sem, vel mollis dolor. Nullam ante ex, scelerisque ac efficitur vel, rhoncus quis lectus. Pellentesque scelerisque efficitur purus in faucibus. Maecenas vestibulum vulputate nisl sed vestibulum. Nullam varius turpis in hendrerit posuere.
-
-
-\subsection*{Figures}
-
-You can insert figures that span over the whole page, or over just a single column. The first one, \figurename~\ref{fig:column}, is an example of a figure that spans only across one of the two columns in the report.
-
-\begin{figure}[ht]\centering
-	\includegraphics[width=\linewidth]{single_column.pdf}
-	\caption{\textbf{A random visualization.} This is an example of a figure that spans only across one of the two columns.}
-	\label{fig:column}
-\end{figure}
-
-On the other hand, \figurename~\ref{fig:whole} is an example of a figure that spans across the whole page (across both columns) of the report.
-
-% \begin{figure*} makes the figure take up the entire width of the page
-\begin{figure*}[ht]\centering 
-	\includegraphics[width=\linewidth]{whole_page.pdf}
-	\caption{\textbf{Visualization of a Bayesian hierarchical model.} This is an example of a figure that spans the whole width of the report.}
-	\label{fig:whole}
-\end{figure*}
-
-
-\subsection*{Tables}
-
-Use the table environment to insert tables.
-
-\begin{table}[hbt]
-	\caption{Table of grades.}
-	\centering
-	\begin{tabular}{l l | r}
-		\toprule
-		\multicolumn{2}{c}{Name} \\
-		\cmidrule(r){1-2}
-		First name & Last Name & Grade \\
-		\midrule
-		John & Doe & $7.5$ \\
-		Jane & Doe & $10$ \\
-		Mike & Smith & $8$ \\
-		\bottomrule
-	\end{tabular}
-	\label{tab:label}
-\end{table}
-
-
-\subsection*{Code examples}
-
-You can also insert short code examples. You can specify them manually, or insert a whole file with code. Please avoid inserting long code snippets, advisors will have access to your repositories and can take a look at your code there. If necessary, you can use this technique to insert code (or pseudo code) of short algorithms that are crucial for the understanding of the manuscript.
-
-\lstset{language=Python}
-\lstset{caption={Insert code directly from a file.}}
-\lstset{label={lst:code_file}}
-\lstinputlisting[language=Python]{code/example.py}
-
-\lstset{language=R}
-\lstset{caption={Write the code you want to insert.}}
-\lstset{label={lst:code_direct}}
-\begin{lstlisting}
-import(dplyr)
-import(ggplot)
-
-ggplot(diamonds,
-	   aes(x=carat, y=price, color=cut)) +
-  geom_point() +
-  geom_smooth()
-\end{lstlisting}
-
-%------------------------------------------------
+The dataset utilized in our study originates from an online discussion centered around the narrative of "The Lady, or the Tiger?" Each message within this discussion has been systematically categorized into distinct discussion types, enabling us to leverage supervised learning techniques for classification purposes. Given the relatively small size of the dataset, comprising approximately 400 messages, we will adopt few-shot learning strategies to effectively train our model. Additionally, the dataset includes supplementary annotations such as dialogue spells and pivot points, which could offer valuable insights if predicted accurately. However, these annotations present challenges due to their inconsistent, sparse nature, necessitating additional preprocessing efforts to render them usable.
 
 \section*{Results}
 
 Use the results section to present the final results of your work. Present the results in a objective and scientific fashion. Use visualisations to convey your results in a clear and efficient manner. When comparing results between various techniques use appropriate statistical methodology.
 
-\subsection*{More random text}
 
-This text is inserted only to make this template look more like a proper report. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit dictum facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam convallis tellus velit, quis ornare ipsum aliquam id. Maecenas tempus mauris sit amet libero elementum eleifend. Nulla nunc orci, consectetur non consequat ac, consequat non nisl. Aenean vitae dui nec ex fringilla malesuada. Proin elit libero, faucibus eget neque quis, condimentum laoreet urna. Etiam at nunc quis felis pulvinar dignissim. Phasellus turpis turpis, vestibulum eget imperdiet in, molestie eget neque. Curabitur quis ante sed nunc varius dictum non quis nisl. Donec nec lobortis velit. Ut cursus, libero efficitur dictum imperdiet, odio mi fermentum dui, id vulputate metus velit sit amet risus. Nulla vel volutpat elit. Mauris ex erat, pulvinar ac accumsan sit amet, ultrices sit amet turpis.
 
-Phasellus in ligula nunc. Vivamus sem lorem, malesuada sed pretium quis, varius convallis lectus. Quisque in risus nec lectus lobortis gravida non a sem. Quisque et vestibulum sem, vel mollis dolor. Nullam ante ex, scelerisque ac efficitur vel, rhoncus quis lectus. Pellentesque scelerisque efficitur purus in faucibus. Maecenas vestibulum vulputate nisl sed vestibulum. Nullam varius turpis in hendrerit posuere.
-
-Nulla rhoncus tortor eget ipsum commodo lacinia sit amet eu urna. Cras maximus leo mauris, ac congue eros sollicitudin ac. Integer vel erat varius, scelerisque orci eu, tristique purus. Proin id leo quis ante pharetra suscipit et non magna. Morbi in volutpat erat. Vivamus sit amet libero eu lacus pulvinar pharetra sed at felis. Vivamus non nibh a orci viverra rhoncus sit amet ullamcorper sem. Ut nec tempor dui. Aliquam convallis vitae nisi ac volutpat. Nam accumsan, erat eget faucibus commodo, ligula dui cursus nisi, at laoreet odio augue id eros. Curabitur quis tellus eget nunc ornare auctor.
 
 
 %------------------------------------------------
@@ -223,9 +124,6 @@ Use the Discussion section to objectively evaluate your work, do not just put pr
 
 %------------------------------------------------
 
-\section*{Acknowledgments}
-
-Here you can thank other persons (advisors, colleagues ...) that contributed to the successful completion of your project.
 
 
 %----------------------------------------------------------------------------------------
