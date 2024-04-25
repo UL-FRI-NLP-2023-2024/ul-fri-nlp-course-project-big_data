@@ -1,0 +1,179 @@
+Cluster 0 - mpnet-retriever-discourse
+Seminar: 96.77%
+Deliberation, Seminar: 1.61%
+Imaginative entry: 1.61%
+
+Cluster 1 - mpnet-retriever-discourse
+Deliberation: 20.79%
+Imaginative: 1.98%
+Social: 9.90%
+Procedure: 8.91%
+UX: 8.91%
+Imaginative entry: 4.95%
+Seminar: 44.55%
+
+Cluster 2 - mpnet-retriever-discourse
+Deliberation: 3.75%
+Seminar: 82.50%
+Social: 1.25%
+Imaginative entry: 12.50%
+
+Cluster 3 - mpnet-retriever-discourse
+Deliberation: 37.12%
+Social: 2.27%
+Procedure: 18.18%
+Seminar, Deliberation: 0.76%
+UX: 18.18%
+Seminar: 22.73%
+Social, Procedure: 0.76%
+
+Cluster 4 - mpnet-retriever-discourse
+Deliberation: 9.02%
+Social: 44.26%
+Procedure: 10.66%
+Other: 4.92%
+UX: 11.48%
+Seminar: 18.85%
+Social, Deliberation: 0.82%
+
+Cluster 5 - mpnet-retriever-discourse
+Deliberation: 0.97%
+Seminar: 96.12%
+Imaginative entry: 1.94%
+Seminar, Deliberation: 0.97%
+
+Cluster 0 - all-MiniLM-L6-v2
+Deliberation: 15.52%
+Imaginative: 0.86%
+Social: 11.21%
+Procedure: 5.17%
+Other: 5.17%
+UX: 7.76%
+Imaginative entry: 4.31%
+Seminar: 50.00%
+
+Cluster 1 - all-MiniLM-L6-v2
+Seminar: 94.55%
+Deliberation, Seminar: 1.82%
+Imaginative entry: 1.82%
+Seminar, Deliberation: 1.82%
+
+Cluster 2 - all-MiniLM-L6-v2
+Deliberation: 3.53%
+Seminar: 84.71%
+Imaginative entry: 11.76%
+
+Cluster 3 - all-MiniLM-L6-v2
+Deliberation: 0.97%
+Seminar: 96.12%
+Imaginative entry: 1.94%
+Seminar, Deliberation: 0.97%
+
+Cluster 4 - all-MiniLM-L6-v2
+Deliberation: 40.24%
+Imaginative: 1.22%
+Social: 3.66%
+Procedure: 6.10%
+UX: 8.54%
+Seminar: 40.24%
+
+Cluster 5 - all-MiniLM-L6-v2
+Deliberation: 18.87%
+Social: 32.70%
+Procedure: 22.01%
+UX: 19.50%
+Seminar: 5.66%
+Social, Procedure: 0.63%
+Social, Deliberation: 0.63%
+
+Cluster 0 - all-mpnet-base-v2
+Deliberation: 7.89%
+Seminar: 76.32%
+Imaginative entry: 15.79%
+
+Cluster 1 - all-mpnet-base-v2
+Deliberation: 2.00%
+Deliberation, Seminar: 1.00%
+Seminar, Deliberation: 2.00%
+Imaginative entry: 2.00%
+Seminar: 93.00%
+
+Cluster 2 - all-mpnet-base-v2
+Deliberation: 44.34%
+Social: 4.72%
+Procedure: 8.49%
+UX: 21.70%
+Seminar: 19.81%
+Social, Procedure: 0.94%
+
+Cluster 3 - all-mpnet-base-v2
+Deliberation: 16.94%
+Imaginative: 1.61%
+Social: 12.10%
+Procedure: 4.84%
+Other: 4.84%
+UX: 8.06%
+Imaginative entry: 2.42%
+Seminar: 49.19%
+
+Cluster 4 - all-mpnet-base-v2
+Deliberation: 1.14%
+Seminar: 97.73%
+Imaginative entry: 1.14%
+
+Cluster 5 - all-mpnet-base-v2
+Deliberation: 7.55%
+Social: 45.28%
+Procedure: 29.25%
+UX: 13.21%
+Seminar: 3.77%
+Social, Deliberation: 0.94%
+
+Cluster 0 - paraphrase-multilingual-MiniLM-L12-v2
+Deliberation: 26.92%
+Social: 10.58%
+Procedure: 25.96%
+UX: 31.73%
+Seminar: 3.85%
+Social, Procedure: 0.96%
+
+Cluster 1 - paraphrase-multilingual-MiniLM-L12-v2
+Deliberation: 21.95%
+Social: 14.63%
+Procedure: 7.32%
+UX: 1.22%
+Imaginative entry: 6.10%
+Seminar: 48.78%
+
+Cluster 2 - paraphrase-multilingual-MiniLM-L12-v2
+Deliberation: 2.83%
+Seminar: 87.74%
+Imaginative entry: 9.43%
+
+Cluster 3 - paraphrase-multilingual-MiniLM-L12-v2
+Deliberation: 0.81%
+Deliberation, Seminar: 0.81%
+Seminar, Deliberation: 0.81%
+Imaginative entry: 1.61%
+Seminar: 95.97%
+
+Cluster 4 - paraphrase-multilingual-MiniLM-L12-v2
+Deliberation: 27.00%
+Imaginative: 1.00%
+Social: 3.00%
+Procedure: 8.00%
+Seminar, Deliberation: 1.00%
+UX: 10.00%
+Imaginative entry: 1.00%
+Seminar: 49.00%
+
+Cluster 5 - paraphrase-multilingual-MiniLM-L12-v2
+Deliberation: 9.52%
+Imaginative: 1.19%
+Social: 50.00%
+Procedure: 5.95%
+Other: 7.14%
+UX: 3.57%
+Seminar: 21.43%
+Social, Deliberation: 1.19%
+
