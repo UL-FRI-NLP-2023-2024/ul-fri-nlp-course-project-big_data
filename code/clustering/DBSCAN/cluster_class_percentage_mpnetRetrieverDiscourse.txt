@@ -1,0 +1,16 @@
+Cluster -1:
+ground_truth
+Seminar                  0.545008
+Deliberation             0.139116
+Social                   0.112930
+UX                       0.076923
+Procedure                0.075286
+Imaginative entry        0.029460
+Other                    0.009820
+Seminar, Deliberation    0.003273
+Imaginative              0.003273
+Social, Deliberation     0.001637
+Deliberation, Seminar    0.001637
+Social, Procedure        0.001637
+Name: count, dtype: float64
+

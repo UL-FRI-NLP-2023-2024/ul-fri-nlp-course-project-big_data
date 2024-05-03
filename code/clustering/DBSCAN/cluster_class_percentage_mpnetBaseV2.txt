@@ -1,0 +1,59 @@
+Cluster 0:
+ground_truth
+Social       0.705882
+Seminar      0.235294
+Procedure    0.058824
+Name: count, dtype: float64
+
+Cluster 1:
+ground_truth
+Seminar                  0.723837
+Deliberation             0.116279
+Procedure                0.058140
+Imaginative entry        0.040698
+UX                       0.034884
+Social                   0.011628
+Seminar, Deliberation    0.005814
+Deliberation, Seminar    0.002907
+Social, Procedure        0.002907
+Imaginative              0.002907
+Name: count, dtype: float64
+
+Cluster 2:
+ground_truth
+Seminar    0.6
+Social     0.4
+Name: count, dtype: float64
+
+Cluster 3:
+ground_truth
+Social          0.428571
+Deliberation    0.285714
+Procedure       0.142857
+UX              0.142857
+Name: count, dtype: float64
+
+Cluster 4:
+ground_truth
+Social    1.0
+Name: count, dtype: float64
+
+Cluster 5:
+ground_truth
+Seminar              0.666667
+Imaginative entry    0.333333
+Name: count, dtype: float64
+
+Cluster -1:
+ground_truth
+Seminar                 0.325893
+Deliberation            0.191964
+Social                  0.178571
+UX                      0.151786
+Procedure               0.107143
+Other                   0.026786
+Imaginative entry       0.008929
+Social, Deliberation    0.004464
+Imaginative             0.004464
+Name: count, dtype: float64
+
