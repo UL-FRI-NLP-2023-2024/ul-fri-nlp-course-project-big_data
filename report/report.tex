@@ -97,19 +97,135 @@ Additionally, TopicGPT is adaptable, allowing users to specify constraints and m
 This work is relevant to our project as it demonstrates the potential of LLMs in improving the efficiency and interpretability of text analysis tasks, which is a key goal of our project to develop a highly reliable language model for qualitative discourse analysis. The adaptability and semantic understanding of TopicGPT could provide valuable insights for developing a language model that not only categorizes text effectively but also offers a level of semantic understanding and interpretability that aligns with the goals of qualitative discourse analysis.
 
 
-%------------------------------------------------
-
-\section*{Methods}
-
-Use the Methods section to describe what you did an how you did it -- in what way did you prepare the data, what algorithms did you use, how did you test various solutions ... Provide all the required details for a reproduction of your work.
-
 \section*{Data}
 
 The dataset utilized in our study originates from an online discussion centered around the narrative of "The Lady, or the Tiger?" Each message within this discussion has been systematically categorized into distinct discussion types, enabling us to leverage supervised learning techniques for classification purposes. Given the relatively small size of the dataset, comprising approximately 400 messages, we will adopt few-shot learning strategies to effectively train our model. Additionally, the dataset includes supplementary annotations such as dialogue spells and pivot points, which could offer valuable insights if predicted accurately. However, these annotations present challenges due to their inconsistent, sparse nature, necessitating additional preprocessing efforts to render them usable.
 
+\section*{Methods}
+
+We have focused on topic prediction as our main task. The approaches we've tried are described in the following sections.
+ 
+\subsection{Sentence embeddings}\label{sentence-embedings}
+Our following approaches heavily rely on the usage of embedding vectors for further processing. We theorize, that given the size of the dataset, which is between 500 and 1000 samples, an approach using general pre-trained sentence embedings is the only viable approach. Finetuning or training a whole LLM \footnote{Large language model} would be impractical and prone to severe overfitting.
+
+We chose a variety of pretrained sentence embedings, from the Huggingace's Sentence-transformers class of models.
+\footnote{Sentance transformers is a library that allows easy use of models pretrained for sentence similarity and semantic search, available here https://huggingface.co/sentence-transformers}.
+This is due to their ease of use, which allowed us to perform more tests.The models can also be trained an run locally, even on machines with no GPU, with reasonable inference speed \footnote{model is trained in less than  minute and inference is below one second for a batch of 100 sentances.}
+
+\subsection{Clustering}
+Our goal at first was to try to use sentence transformers to embed the messages from our dataset and then use clustering to group them.
+This way we could have a better understanding of the data and see if there are any patterns in the data and if they correlate to the provided ground truth labels.
+We chose to use the sentence transformers library because it is a very powerful tool for embedding sentences and it is very easy to use.
+We selected four different sentence transformers models to embed the data and then we used the KMeans, DBSCAN, and Agglomerative clustering to cluster the data.
+We used TSNE to visualize the clusters and see if there are any patterns in the data.
+
+\subsubsection{K-Means Clustering}
+K-means clustering is a method of vector quantization, originally from signal processing, that aims to partition n-observations into k-clusters in which each observation belongs to the cluster with the nearest mean, serving as a prototype of the cluster.
+At first our aim was to define the number of clusters as the number of unique labels in the dataset, but we later realised that this is not the best approach because some classes are not well represented in the dataset and the model could not identify the patterns in the data well.
+We found that the best number of clusters is 6, which is the number of the most represented classes in the dataset.
+On \ref{fig:kmeans} we can see the clusters that the KMeans model identified for embeddings from the transformer all-mpnet-base-v2, 
+which was the best performing model for the clustering task. It is visible that the model identified some patterns in the data, but the clusters are not well seperated, 
+which was expected given the nature of the provided data.
+
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=1\columnwidth]{fig/clustering_Kmeans_all_mpnet_base_v2.png}
+
+    \caption{The graph shows the clusters that the KMeans model identified for transformer all-mpnet-base-v2.}
+    \label{fig:kmeans}
+\end{figure}
+
+In table \ref{tab:clusters_kmeans} we look at each cluster in more detail to see which classes are represented in each cluster. At first glance we can see that in most clusters,
+discourse type "Seminar" is in majority, which was expected since \(54.7\)\% of all data is of class "Seminar". In case of cluster 0, we can see that we have a majority of class "Social" and in cluster 5 
+we have a majority of class "Deliberation". This shows that the model was able to identify some patterns in the data that correlate to the provided labels, but mostly the clusters do not represent the given labels well.
+
+\begin{table}[h]
+    \centering
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    \textbf{Clusters} & \textbf{Seminar} & \textbf{Social} & \textbf{Procedure} & \textbf{UX} & \textbf{Deliberation} & \textbf{Imaginative e.} & \textbf{Rest of} \\ \hline
+    Cluster 0 & 2.94\% & \textbf{47.06\%} & 27.45\% & 12.75\% & 8.82\% & 0\% & 0.98\% \\ \hline
+    Cluster 1 & \textbf{76.81\%} & 0\% & 0\% & 0\% & 5.80\% & 17.39\% & 0\% \\ \hline
+    Cluster 2 &\textbf{ 94.57\%} & 0\% & 0\% & 0\% & 2.17\% & 1.09\% & 2.17\% \\ \hline
+    Cluster 3 & \textbf{45.07\%} & 10.56\% & 5.63\% & 11.97\% & 19.01\% & 2.11\% & 5.65\% \\ \hline
+    Cluster 4 & \textbf{96.23\%} & 0\% & 0\% & 0\% & 0.94\% & 1.89\% & 0.94\% \\ \hline
+    Cluster 5 & 24.00\% & 6.00\% & 10.00\% & 17.00\% & \textbf{42.00\%} & 0\% & 1\% \\ \hline
+    \end{tabular}%
+    }
+    \caption{Cluster composition percentages using K-means with embeddings from transformer all-mpnet-base-v2.}
+    \label{tab:clusters_kmeans}
+    \end{table}
+
+\subsubsection{Agglomerative Clustering}
+Agglomerative clustering is a type of hierarchical clustering that builds a hierarchy of clusters. The model starts with each point as a separate cluster and then merges the closest pairs of clusters until only one cluster remains.
+We tested different linkage methods, the most promising one was 'complete' which uses the maximum distances between all observations of the two sets.
+We used the same number of clusters as in the KMeans model, which is 6. We can observe the results in table \ref{tab:clusters_agglomerative},
+where we can see the clusters that the Agglomerative model identified for embeddings from the transformer all-mpnet-base-v2.
+In cluster 0, we can see that the model correctly clustered 90.04\% of the data as class "Seminar", which is expected, but it still shows
+that the model was able to identify some patterns in the data that correlate to the provided labels. 
+The difference between the KMeans and Agglomerative clustering is that the Agglomerative model was able to cluster the data somewhat better, but the clusters are still not well separated.
+In the case of agglomerative clustering, the clusters exhibit distinct compositions. Notably, there are three clusters (Cluster 1, Cluster 3, and Cluster 4) where the majority of the data does not belong to the "Seminar" class, which is the most represented class in the dataset. This indicates that these clusters contain data points that are characterized by different attributes compared to the majority of the dataset.
+This shows some potential for the model to identify patterns in the data that correlate to the provided labels, but ultimately the clusters do not represent the given labels well enough
+to be able to predict the discourse type of the given data.
+
+
+\begin{table}[h]
+    \centering
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    \textbf{Clusters} & \textbf{Seminar} & \textbf{Social} & \textbf{Procedure} & \textbf{UX} & \textbf{Deliberation} & \textbf{Imaginative e.} & \textbf{Rest of} \\ \hline
+    Cluster 0 & \textbf{90.04\%} & 0\% & 0\% & 0.99\% & 3.98\% & 3.98\% & 1.01\% \\ \hline
+    Cluster 1 & 22.09\% & 4.65\% & 15.11\% & 12.79\% & \textbf{43.02\%} & 1.16\% & 0.18\% \\ \hline
+    Cluster 2 & \textbf{29.54\%} & 22.73\% & 0\% & 15.90\% & 17.04\% & 0\% & 14.79\% \\ \hline
+    Cluster 3 & 0\% & 0\% & 5.56\% & \textbf{61.11\%} & 33.33\% & 0\% & 0\% \\ \hline
+    Cluster 4 & 4.7\% & \textbf{47.05\%} & 25.88\% & 7.05\% & 14.11\% & 0\% & 1.21\% \\ \hline
+    Cluster 5 & \textbf{77.44\%} & 3.76\% & 1.5\% & 2.25\% & 5.26\% & 7.51\% & 2.28\% \\ \hline
+    \end{tabular}%
+    }
+    \caption{Cluster composition percentages using agglomerative clustering with embeddings from transformer all-mpnet-base-v2.}
+    \label{tab:clusters_agglomerative}
+    \end{table}
+
+
+\subsubsection{DBSCAN Clustering}
+
+TODO: če bo treba lahko še tole opišem sam rezultati so še bol šit
+
+
+\subsection{Classification model}
+In this approach, all input sentences have been individually embedded using the previously mentioned sentence embedding techniques \ref{sentence-embedings}. This is the input for the model, that needs to predict in which of the 8 classes does the text belong to. \\
+
+Compound classes (entries labeled, belonging to more classes) are removed, due to their low occurrence (1 or 2). Here is the table with classes and their respected counts. \\
+
+
+
+
+As seen classes are unbalanced. To mitigate this, cross entropy loss is weighted by the count of samples in the predicted class, so that minority classes don't get ignored.
+
+A shallow 2-layer 32 hidden neuron perceptron is used, to predict the classes. Larger networks were too prone to overfitting.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{confusion_matrix.png}
+    \caption{Model confusion matrix on validation data shows, that model correctly predicts the majority class but struggles with less used ones.}
+    \label{fig:conf_matrix_model}
+\end{figure}
+
+Testing the model in interactive mode gave some convincing results. We tried some made-up sentences a concluded that the model predicts \textbf{Seminar} and \textbf{Social} classes with high certainty but confuses \textbf{Deliberation} and \textbf{Procedure}. \\
+We believe that part of the problem is that some text samples are difficult and sometimes deceiving for a human, and we (three team members) could not unanimously decide on the correct label. \\
+
+Overall, we consider this approach successful. In the future, better results can be achieved by providing additional context to the model if parts of the conversation are tempoarly correlated. We believe, that Domain-specific or context-aware embeddings would also greatly improve model performance. 
+
+
 \section*{Results}
 
-Use the results section to present the final results of your work. Present the results in a objective and scientific fashion. Use visualisations to convey your results in a clear and efficient manner. When comparing results between various techniques use appropriate statistical methodology.
+
+
+
+
 
 
 
