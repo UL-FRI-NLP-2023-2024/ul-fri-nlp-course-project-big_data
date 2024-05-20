@@ -116,7 +116,7 @@ This is due to their ease of use, which allowed us to perform more tests.The mod
 Our goal at first was to try to use sentence transformers to embed the messages from our dataset and then use clustering to group them.
 This way we could have a better understanding of the data and see if there are any patterns in the data and if they correlate to the provided ground truth labels.
 We chose to use the sentence transformers library because it is a very powerful tool for embedding sentences and it is very easy to use.
-We selected four different sentence transformers models to embed the data and then we used the KMeans, DBSCAN, and Agglomerative clustering to cluster the data.
+We selected four different sentence transformers models to embed the data and then we used the KMeans and Agglomerative clustering to cluster the data.
 We used TSNE to visualize the clusters and see if there are any patterns in the data.
 
 \subsubsection{K-Means Clustering}
@@ -190,11 +190,6 @@ to be able to predict the discourse type of the given data.
     \end{table}
 
 
-\subsubsection{DBSCAN Clustering}
-
-TODO: če bo treba lahko še tole opišem sam rezultati so še bol šit
-
-
 \subsection{Classification model}
 In this approach, all input sentences have been individually embedded using the previously mentioned sentence embedding techniques \ref{sentence-embedings}. This is the input for the model, that needs to predict in which of the 8 classes does the text belong to. \\
 
@@ -218,6 +213,48 @@ Testing the model in interactive mode gave some convincing results. We tried som
 We believe that part of the problem is that some text samples are difficult and sometimes deceiving for a human, and we (three team members) could not unanimously decide on the correct label. \\
 
 Overall, we consider this approach successful. In the future, better results can be achieved by providing additional context to the model if parts of the conversation are tempoarly correlated. We believe, that Domain-specific or context-aware embeddings would also greatly improve model performance. 
+
+\subsection{TF-IDF embeddings}
+Next we decided to try a classical approach by using TF-IDF embeddings. We used the TfidfVectorizer from the scikit-learn library to transform the text data into numerical data. 
+First we preprocessed the text data by removing stopwords, punctuation, converting the text to lowercase and lemmatizing the text. Then we constructed the TF-IDF matrix with the TfidfVectorizer.
+We then decided to try three different models to classify the data: logistic regression, support vector machine and random forest. We used the scikit-learn library to implement the models, TF-IDF matrix as input data, the provided labels as target data and 5-fold cross-validation to evaluate the models.
+The results are shown in the table \ref{tab:tfidf_results}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} & \textbf{Standard deviation} \\ \hline
+    Logistic regression & 0.57 & 0.01 \\ \hline
+    Support vector machine & 0.56 & 0.01 \\ \hline
+    \textbf{Random forest} & \textbf{0.61} & \textbf{ 0.02} \\ \hline
+    \end{tabular}
+
+    \caption{Results of the models using TF-IDF embeddings.}
+    \label{tab:tfidf_results}
+\end{table}
+
+As we can see, the random forest model performed the best with an accuracy of 0.61. 
+Given the fact that our dataset has 6 classes that have less then 1\% of the data since they are a combination of the majority classes, we decided to either merge them into one class or remove them from the dataset.
+After removing the minority classes, we tried the same models again and the results are shown in the table \ref{tab:tfidf_results_no_compound}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} & \textbf{Standard deviation} \\ \hline
+    Logistic regression & 0.59 & 0.01 \\ \hline
+    Support vector machine & 0.57 & 0.01 \\ \hline
+    \textbf{Random forest} & \textbf{0.64} & \textbf{0.05} \\ \hline
+    \end{tabular}
+
+    \caption{Results of the models using TF-IDF embeddings without minority classes.}
+    \label{tab:tfidf_results_no_compound}
+\end{table}
+
+As we can see, the performance of the models improved after removing the minority classes. The random forest model performed the best with an accuracy of 0.64.
+Given the fact that the dataset is small and the classes are unbalanced, the results are satisfactory. The majority class 'Seminar' has 54.5\% of the data (55.6\% after removal of minority classes), so the models are biased towards this class.
+This means that the Random forest model has about 10\% better accuracy than a model that would predict only the majority class. Given the nature of the dataset, the results are satisfactory.
 
 
 \section*{Results}
